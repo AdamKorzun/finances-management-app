@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-auth',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.page.scss'],
 })
 export class AuthPage implements OnInit {
-  constructor() {}
+  constructor(private auth: AuthService) {}
 
   signIn() {
-    console.log('test');
+    this.auth.loginWithRedirect();
   }
 
   ngOnInit() {}
