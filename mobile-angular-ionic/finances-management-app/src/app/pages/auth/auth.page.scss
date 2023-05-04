@@ -1,0 +1,19 @@
+.auth-image {
+  background-color: var(--ion-color-primary);
+  padding: 50px;
+  height: 50%;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+ion-grid {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

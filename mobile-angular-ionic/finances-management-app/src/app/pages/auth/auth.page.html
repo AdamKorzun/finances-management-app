@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="card-container">
+    <img
+      class="auth-image"
+      src="../../../assets/icons/signInArt.svg"
+      alt="Ionic logo"
+      loading="lazy"
+    />
+    <ion-grid>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">
+          Start improving you finances today
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-text-center">
+        Dive into analytics, keep track of your transactions, visualize your
+        investments, manage debts, make on-chain transactions with our built-in
+        Ethereum wallet
+      </ion-card-content>
+      <ion-row class="ion-justify-content-center ion-padding-horizontal">
+        <ion-col class="ion-text-center">
+          <ion-button expand="block" color="primary" (click)="signIn()">
+            Sign in
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
