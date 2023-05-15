@@ -1,0 +1,60 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <section class="wallet-builder">
+    <form class="wallet-input" action="" [formGroup]="form">
+      <ion-item fill="outline" mode="md">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" mode="md">
+        <ion-label position="floating">Currency</ion-label>
+        <ion-select formControlName="currency">
+          <ion-select-option
+            *ngFor="let currency of currencies$ | async"
+            value="{{ currency.code }}"
+            >{{ currency.name }}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+      <ion-item fill="outline" mode="md">
+        <ion-label position="floating">Balance</ion-label>
+        <ion-input formControlName="balance" type="number"></ion-input>
+      </ion-item>
+      <ion-item fill="outline" mode="md">
+        <ion-label position="floating">Goal (optional)</ion-label>
+        <ion-input formControlName="goal" type="number"></ion-input>
+      </ion-item>
+      <div class="colors" id="colors">
+        <div
+          *ngFor="let color of colors$ | async"
+          class="color"
+          [style.backgroundColor]="color"
+          (click)="changeBackgroundColor(color)"
+        >
+          <div *ngIf="color === wallet.color" class="selected-color"></div>
+        </div>
+      </div>
+      <ion-button
+        type="submit"
+        class="create-button"
+        [disabled]="!form.valid"
+        (click)="modifyWallet()"
+        routerDirection="back"
+        >Create</ion-button
+      >
+    </form>
+    <div class="wallet-preview">
+      <div class="preview-content">
+        <p class="preview">Preview</p>
+        <app-wallet
+          [wallet]="wallet"
+          [displayOnly]="true"
+          class="wallet"
+        ></app-wallet>
+        <p class="wallet-tip">
+          <b>Tip:</b> You can always change your wallet appearance in settings.
+        </p>
+      </div>
+    </div>
+  </section>
+</ion-content>

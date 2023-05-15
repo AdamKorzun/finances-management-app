@@ -1,0 +1,57 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>wallets</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Wallets</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['modify']">Add wallet</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
+  <!-- <h2>Wallets</h2> -->
+  <div class="wallets">
+    <!-- <svg
+      class="add-wallet-button"
+      width="245"
+      height="154"
+      viewBox="0 0 245 154"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="2.5"
+        y="2.5"
+        width="240"
+        height="149"
+        rx="15.5"
+        fill="#7A3EF8"
+        stroke="#7A3EF8"
+        stroke-width="5"
+      />
+      <rect x="119" y="44" width="7" height="66" rx="3.5" fill="white" />
+      <rect
+        x="156"
+        y="74"
+        width="7"
+        height="66"
+        rx="3.5"
+        transform="rotate(90 156 74)"
+        fill="white"
+      />
+    </svg> -->
+    <div
+      *ngFor="let wallet of wallets$ | async"
+      class="wallet-wrapper"
+      (click)="selectWallet(wallet);"
+    >
+      <app-wallet
+        [wallet]="wallet"
+        [selected]="wallet === selectedWallet"
+      ></app-wallet>
+    </div>
+  </div>
+</ion-content>
