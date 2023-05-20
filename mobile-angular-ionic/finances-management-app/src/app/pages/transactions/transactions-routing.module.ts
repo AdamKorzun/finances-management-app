@@ -2,12 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TransactionsPage } from './transactions.page';
+import { ModifyCategoriesComponent } from './modify-categories/modify-categories.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TransactionsPage
-  }
+    component: TransactionsPage,
+  },
+  {
+    path: 'category',
+    component: ModifyCategoriesComponent,
+  },
 ];
 
 @NgModule({

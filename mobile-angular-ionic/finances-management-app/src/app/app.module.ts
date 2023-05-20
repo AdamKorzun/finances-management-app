@@ -10,12 +10,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from './shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     SharedModule,
+    MatIconModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AuthModule.forRoot({
