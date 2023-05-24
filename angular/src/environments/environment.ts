@@ -7,10 +7,10 @@ export const environment = {
   authDomain: 'dev-16fr5mnt2b0eess4.us.auth0.com',
   authClientId: 'Wur3VjLXBn65LDBssrSiug7h0hWDFf1H',
   authAudience: 'https://finances-be.com/',
-  baseUrl: 'http://localhost:8087/v2/'
+  baseUrl: 'http://localhost:8087/v2/',
 };
 
-export enum ApiEndpoints  {
+export enum ApiEndpoints {
   wallets = 'wallets/',
   colors = 'colors/',
   currencies = 'currencies/',
@@ -21,7 +21,7 @@ export enum ApiEndpoints  {
   newsFilter = 'news-filters/',
   availableNewsLanguages = 'news-languages/',
   news = 'news/',
-  stockChartData ='stocks/chart-data/',
+  stockChartData = 'stocks/chart-data/',
   topCategories = 'transaction-categories/top/',
   walletsBalance = 'wallets/chart-data/',
   transactionsAmount = 'transactions/chart-data/',
@@ -31,7 +31,8 @@ export enum ApiEndpoints  {
   debts = 'debts/',
   debtPayment = 'debts/transactions/',
   userSettings = 'account-settings/',
-  investments = 'investments/'
+  investments = 'investments/',
+  checkout = 'checkout/',
 }
 
 /*

@@ -49,6 +49,7 @@ LOCAL_APPS = [
     "investments",
     "wallets",
     "news",
+    "checkout"
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -176,7 +177,7 @@ LOGGING = {
             "class": "logging.StreamHandler",
         },
         "django.server": {"level": "INFO", "class": "logging.StreamHandler", "formatter": "django.server"},
-        "django.db": {"level": "DEBUG", "filters": [], "class": "logging.StreamHandler",},
+        "django.db": {"level": "DEBUG", "filters": [], "class": "logging.StreamHandler", },
     },
     "loggers": loggers,
 }
@@ -216,7 +217,7 @@ REST_FRAMEWORK = {
 }
 
 SWAGGER_SETTINGS = {
-   'USE_SESSION_AUTH': False
+    'USE_SESSION_AUTH': False
 }
 
 CORS_ALLOWED_ORIGINS = []
@@ -238,6 +239,7 @@ JWT_AUTH = {
     "JWT_AUDIENCE": "https://finances-be.com/",
     "JWT_ISSUER": "https://dev-16fr5mnt2b0eess4.us.auth0.com/",
     "JWT_AUTH_HEADER_PREFIX": "Bearer",
+    "JWT_PAYLOAD_HANDLER": "accounts.utils.jwt_handle_payload"
 }
 
 MARKETAUX_API_KEY = os.environ["MARKETAUX_API_KEY"]
@@ -254,3 +256,10 @@ CHAIN_ID = os.environ["CHAIN_ID"]
 
 ETHERSCAN_API_URL = os.environ["ETHERSCAN_API_URL"]
 ETHERSCAN_API_KEY = os.environ["ETHERSCAN_API_KEY"]
+
+
+STRIPE_PUBLIC_KEY = os.environ["STRIPE_PUBLIC_KEY"]
+STRIPE_SECRET_KEY = os.environ["STRIPE_SECRET_KEY"]
+
+PAYMENT_SUCCESS_URL = os.environ["PAYMENT_SUCCESS_URL"]
+PAYMENT_CANCEL_URL = os.environ["PAYMENT_CANCEL_URL"]

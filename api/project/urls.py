@@ -2,7 +2,7 @@ from django.urls import path, include, re_path
 from rest_framework import routers, permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-
+from checkout.views import StripeSessionView, StripeWebhookView
 from accounts.views import AccountSettingsViewSet
 from crypto.views import EthKeysViewSet
 from decorations.views import IconViewSet, ColorViewSet
@@ -29,7 +29,8 @@ schema_view = get_schema_view(
 router = routers.SimpleRouter()
 router.include_root_view = False
 
-router.register(r"account-settings", AccountSettingsViewSet, basename="account-settings")
+router.register(r"account-settings", AccountSettingsViewSet,
+                basename="account-settings")
 
 router.register(r"eth-keys", EthKeysViewSet, basename="eth-keys")
 
@@ -40,7 +41,8 @@ router.register(r"stocks", StockViewSet, basename="stocks")
 router.register(r"investments", InvestmentViewSet, basename="investments")
 
 router.register(r"news-filters", NewsFilterViewSet, basename="news-filters")
-router.register(r"news-languages", NewsLanguageViewSet, basename="news-languages")
+router.register(r"news-languages", NewsLanguageViewSet,
+                basename="news-languages")
 
 router.register(r"currencies", CurrencyViewSet, basename="currencies")
 router.register(r"wallets", WalletViewSet, basename="wallets")
@@ -52,9 +54,13 @@ router.register(
     basename="transaction-categories"
 )
 
+
 urlpatterns = [
     path("v2/", include(router.urls)),
     path("v2/news/", NewsAPIView.as_view(), name="news"),
+    path("v2/checkout/", StripeSessionView.as_view(), name="checkout"),
+    path("v2/checkout/webhook", StripeWebhookView.as_view(), name="checkout")
+
 ]
 
 if settings.DEBUG:
