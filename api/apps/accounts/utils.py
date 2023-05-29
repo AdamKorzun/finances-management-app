@@ -15,6 +15,12 @@ def jwt_get_username_from_payload_handler(payload):
     return username
 
 
+def jwt_handle_payload(payload):
+    stripe_id = payload.get("stripeId").replace("|", ".")
+    payload['stripe_id'] = stripe_id
+    return payload
+
+
 def jwt_decode_token(token):
     header = jwt.get_unverified_header(token)
     jwks = requests.get(f"{AUTH0_DOMAIN}.well-known/jwks.json").json()

@@ -60,6 +60,11 @@ services:
     ports:
       - "${MEMCACHED_PORT}:11211"
 
+  stripe-cli:
+    image: stripe/stripe-cli
+    container_name: stripe-cli
+    command: "listen --api-key ${STRIPE_SECRET_KEY} --device-name ${STRIPE_DEVICE_NAME} --forward-to api/v2/checkout/webhook"
+
 volumes:
   volume-db:
     name: finance-volume-db

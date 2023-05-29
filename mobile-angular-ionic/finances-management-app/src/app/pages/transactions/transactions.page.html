@@ -1,0 +1,112 @@
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Transactions</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['modify']">Add</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="transactions-page-wrapper">
+    <section class="transactions-menu">
+      <div class="filters-wrapper">
+        <ion-button
+          size="small"
+          *ngFor="let transactionFilter of transactionFilters | keyvalue"
+          fill="{{transactionFilter.key === selectedFilter ? 'solid' : 'outline'}}"
+          (click)="selectFilter(transactionFilter.value)"
+        >
+          {{ transactionFilter.value}}
+        </ion-button>
+      </div>
+    </section>
+    <ion-header class="ion-padding-vertical">Categories</ion-header>
+    <section class="categories">
+      <button
+        class="category category-add-button"
+        (click)="openCategoryModal()"
+      >
+        +
+      </button>
+      <div
+        [style.backgroundColor]="category.color"
+        class="category"
+        (click)="openCategoryModal(category)"
+        *ngFor="let category of categories$ | async  | slice:0:maxCategories"
+      >
+        <mat-icon inline="true">{{ category.icon }}</mat-icon>
+        <span>{{ category.name }}</span>
+      </div>
+      <button
+        *ngIf="showAllCategoriesButton"
+        class="secondary-button"
+        (click)="showAllCateogires()"
+      >
+        {{ showAllText }}
+      </button>
+    </section>
+    <!-- <ion-item fill="solid">
+      <ion-label position="floating">Category</ion-label>
+      <ion-select [multiple]="true">
+        <ion-select-option *ngFor="let category of categories$ | async">
+          {{category.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item> -->
+    <div
+      class="transaction-wrapper"
+      *ngFor="let transaction of transactions$ | async"
+    >
+      <app-transaction [transaction]="transaction"></app-transaction>
+    </div>
+    <!-- <div class="show-more-button-wrapper" (click)="getMoreTransactions()">
+      <ion-button>Show more</ion-button>
+    </div> -->
+
+    <ion-button id="open-modal" expand="block">Open Sheet Modal</ion-button>
+
+    <ion-modal
+      trigger="open-modal"
+      [initialBreakpoint]="0.6"
+      [breakpoints]="[0, 0.6]"
+    >
+      <ng-template>
+        <div class="modal-block">
+          <ion-item fill="outline" mode="md">
+            <ion-label position="floating" type="number">Amount</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item fill="outline" mode="md">
+            <ion-label position="floating">Category</ion-label>
+            <ion-select>
+              <ion-select-option *ngFor="let category of categories$ | async">
+                {{category.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item fill="outline" mode="md">
+            <ion-label position="floating">From</ion-label>
+            <ion-select>
+              <ion-select-option *ngFor="let category of categories$ | async">
+                {{category.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item fill="outline" mode="md">
+            <ion-label position="floating" type="text">Description</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="block">Edit</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button expand="block" color="danger">Remove</ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ng-template>
+    </ion-modal>
+  </div>
+</ion-content>

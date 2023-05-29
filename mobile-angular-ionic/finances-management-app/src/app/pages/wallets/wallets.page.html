@@ -1,0 +1,22 @@
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Wallets</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['modify']">Add wallet</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="wallets">
+    <div
+      *ngFor="let wallet of wallets$ | async"
+      class="wallet-wrapper"
+      (click)="selectWallet(wallet);"
+    >
+      <app-wallet
+        [wallet]="wallet"
+        [selected]="wallet === selectedWallet"
+      ></app-wallet>
+    </div>
+  </div>
+</ion-content>

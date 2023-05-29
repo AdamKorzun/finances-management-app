@@ -48,6 +48,7 @@ import { SettingsPageComponent } from './components/settings-page/settings-page.
 import { CurrencyLocationPipe } from './pipes/currency-location.pipe';
 import { InvestmentsPageComponent } from './components/investments-page/investments-page.component';
 import { InvestmentModalComponent } from './components/investment-modal/investment-modal.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { InvestmentModalComponent } from './components/investment-modal/investme
     CurrencyLocationPipe,
     InvestmentsPageComponent,
     InvestmentModalComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,22 +99,26 @@ import { InvestmentModalComponent } from './components/investment-modal/investme
       clientId: environment.authClientId,
       audience: environment.authAudience,
       httpInterceptor: {
-        allowedList: [`${environment.baseUrl}${ApiEndpoints.wallets}`,
-        `${environment.baseUrl}*`]
-      }
+        allowedList: [
+          `${environment.baseUrl}${ApiEndpoints.wallets}`,
+          `${environment.baseUrl}*`,
+        ],
+      },
     }),
     BrowserAnimationsModule,
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
     MatIconModule,
-    NgChartsModule
+    NgChartsModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthHttpInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
